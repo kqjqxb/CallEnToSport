@@ -7,23 +7,53 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C2CD9B468854A8B82AA10B4 /* Orbitron-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99161AA4B7FE49E6817C69D5 /* Orbitron-Regular.ttf */; };
 		0C80B921A6F3F58F76C31292 /* libPods-CallEnToSport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-CallEnToSport.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		1E5DD1CC59C94FA8A54B4CF5 /* Inter_18pt-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0A54E7C24174CF89B2C7665 /* Inter_18pt-Bold.ttf */; };
+		23ECB96FF6464E6CA2F02631 /* Inter_18pt-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25A06E4CEF0F4340B039A9BC /* Inter_18pt-Thin.ttf */; };
+		2E0261C3F2174166B2F95BED /* Inter_18pt-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07C46C8007044A1D8440F5A8 /* Inter_18pt-Light.ttf */; };
+		4AA33BA6A65F4409BC09B6DF /* Inter_18pt-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D1B93EEDECD432E96B566D6 /* Inter_18pt-SemiBold.ttf */; };
+		5C18DA1C051C4B5190BF34AD /* Inter_18pt-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 223F065101A34E58AFC38354 /* Inter_18pt-ExtraLight.ttf */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
+		7D8E9994582E493BB83A7009 /* Inter_18pt-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C6128431B17475DB4C28B16 /* Inter_18pt-ExtraBold.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		81EF4C14367E41C1A4D326EA /* Inter_18pt-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F7DC5EB9A0E4CDFAFF62A32 /* Inter_18pt-Medium.ttf */; };
+		947971A519354D758C1AEFFC /* Orbitron-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15F711E8D1B3475DAEF870E7 /* Orbitron-Black.ttf */; };
+		A243485414C24F62A2150400 /* Orbitron-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5FE49A7B9AF4D03B87E6423 /* Orbitron-ExtraBold.ttf */; };
+		B434A726C1E242C5B0CE4236 /* Orbitron-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E68C0B7DC07401F9AFA556E /* Orbitron-Medium.ttf */; };
+		BD0836E0FC724535944361DD /* Inter_18pt-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC52A652A44F4422A5CE9D96 /* Inter_18pt-Black.ttf */; };
+		BD79DE8B2C0E464DB91FEA06 /* Orbitron-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC378CC2A0FC4F2A87C2B5F3 /* Orbitron-SemiBold.ttf */; };
 		C6311D743AC1D79D6985DCD0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		D34EB9CD1FC2478DAC9854EE /* Orbitron-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06E228EF66514EE5BD33C6A5 /* Orbitron-Bold.ttf */; };
+		E7E375AA9AA641DAB49AE984 /* Inter_18pt-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 790E83487A5F4D18B6357E46 /* Inter_18pt-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06E228EF66514EE5BD33C6A5 /* Orbitron-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-Bold.ttf"; path = "../src/assets/fonts/Orbitron-Bold.ttf"; sourceTree = "<group>"; };
+		07C46C8007044A1D8440F5A8 /* Inter_18pt-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-Light.ttf"; path = "../src/assets/fonts/Inter_18pt-Light.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* CallEnToSport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallEnToSport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CallEnToSport/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CallEnToSport/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = CallEnToSport/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		15F711E8D1B3475DAEF870E7 /* Orbitron-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-Black.ttf"; path = "../src/assets/fonts/Orbitron-Black.ttf"; sourceTree = "<group>"; };
+		223F065101A34E58AFC38354 /* Inter_18pt-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-ExtraLight.ttf"; path = "../src/assets/fonts/Inter_18pt-ExtraLight.ttf"; sourceTree = "<group>"; };
+		25A06E4CEF0F4340B039A9BC /* Inter_18pt-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-Thin.ttf"; path = "../src/assets/fonts/Inter_18pt-Thin.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-CallEnToSport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallEnToSport.debug.xcconfig"; path = "Target Support Files/Pods-CallEnToSport/Pods-CallEnToSport.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-CallEnToSport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallEnToSport.release.xcconfig"; path = "Target Support Files/Pods-CallEnToSport/Pods-CallEnToSport.release.xcconfig"; sourceTree = "<group>"; };
+		5D1B93EEDECD432E96B566D6 /* Inter_18pt-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-SemiBold.ttf"; path = "../src/assets/fonts/Inter_18pt-SemiBold.ttf"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-CallEnToSport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CallEnToSport.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C6128431B17475DB4C28B16 /* Inter_18pt-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-ExtraBold.ttf"; path = "../src/assets/fonts/Inter_18pt-ExtraBold.ttf"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = CallEnToSport/AppDelegate.swift; sourceTree = "<group>"; };
+		790E83487A5F4D18B6357E46 /* Inter_18pt-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-Regular.ttf"; path = "../src/assets/fonts/Inter_18pt-Regular.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = CallEnToSport/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8E68C0B7DC07401F9AFA556E /* Orbitron-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-Medium.ttf"; path = "../src/assets/fonts/Orbitron-Medium.ttf"; sourceTree = "<group>"; };
+		8F7DC5EB9A0E4CDFAFF62A32 /* Inter_18pt-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-Medium.ttf"; path = "../src/assets/fonts/Inter_18pt-Medium.ttf"; sourceTree = "<group>"; };
+		99161AA4B7FE49E6817C69D5 /* Orbitron-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-Regular.ttf"; path = "../src/assets/fonts/Orbitron-Regular.ttf"; sourceTree = "<group>"; };
+		A5FE49A7B9AF4D03B87E6423 /* Orbitron-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-ExtraBold.ttf"; path = "../src/assets/fonts/Orbitron-ExtraBold.ttf"; sourceTree = "<group>"; };
+		AC52A652A44F4422A5CE9D96 /* Inter_18pt-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-Black.ttf"; path = "../src/assets/fonts/Inter_18pt-Black.ttf"; sourceTree = "<group>"; };
+		D0A54E7C24174CF89B2C7665 /* Inter_18pt-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-Bold.ttf"; path = "../src/assets/fonts/Inter_18pt-Bold.ttf"; sourceTree = "<group>"; };
+		DC378CC2A0FC4F2A87C2B5F3 /* Orbitron-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-SemiBold.ttf"; path = "../src/assets/fonts/Orbitron-SemiBold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -75,6 +105,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				EF212561C337496BAC50887D /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -96,6 +127,28 @@
 				5709B34CF0A7D63546082F79 /* Pods-CallEnToSport.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		EF212561C337496BAC50887D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				15F711E8D1B3475DAEF870E7 /* Orbitron-Black.ttf */,
+				06E228EF66514EE5BD33C6A5 /* Orbitron-Bold.ttf */,
+				A5FE49A7B9AF4D03B87E6423 /* Orbitron-ExtraBold.ttf */,
+				8E68C0B7DC07401F9AFA556E /* Orbitron-Medium.ttf */,
+				99161AA4B7FE49E6817C69D5 /* Orbitron-Regular.ttf */,
+				DC378CC2A0FC4F2A87C2B5F3 /* Orbitron-SemiBold.ttf */,
+				AC52A652A44F4422A5CE9D96 /* Inter_18pt-Black.ttf */,
+				D0A54E7C24174CF89B2C7665 /* Inter_18pt-Bold.ttf */,
+				6C6128431B17475DB4C28B16 /* Inter_18pt-ExtraBold.ttf */,
+				223F065101A34E58AFC38354 /* Inter_18pt-ExtraLight.ttf */,
+				07C46C8007044A1D8440F5A8 /* Inter_18pt-Light.ttf */,
+				8F7DC5EB9A0E4CDFAFF62A32 /* Inter_18pt-Medium.ttf */,
+				790E83487A5F4D18B6357E46 /* Inter_18pt-Regular.ttf */,
+				5D1B93EEDECD432E96B566D6 /* Inter_18pt-SemiBold.ttf */,
+				25A06E4CEF0F4340B039A9BC /* Inter_18pt-Thin.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +214,21 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				C6311D743AC1D79D6985DCD0 /* PrivacyInfo.xcprivacy in Resources */,
+				947971A519354D758C1AEFFC /* Orbitron-Black.ttf in Resources */,
+				D34EB9CD1FC2478DAC9854EE /* Orbitron-Bold.ttf in Resources */,
+				A243485414C24F62A2150400 /* Orbitron-ExtraBold.ttf in Resources */,
+				B434A726C1E242C5B0CE4236 /* Orbitron-Medium.ttf in Resources */,
+				0C2CD9B468854A8B82AA10B4 /* Orbitron-Regular.ttf in Resources */,
+				BD79DE8B2C0E464DB91FEA06 /* Orbitron-SemiBold.ttf in Resources */,
+				BD0836E0FC724535944361DD /* Inter_18pt-Black.ttf in Resources */,
+				1E5DD1CC59C94FA8A54B4CF5 /* Inter_18pt-Bold.ttf in Resources */,
+				7D8E9994582E493BB83A7009 /* Inter_18pt-ExtraBold.ttf in Resources */,
+				5C18DA1C051C4B5190BF34AD /* Inter_18pt-ExtraLight.ttf in Resources */,
+				2E0261C3F2174166B2F95BED /* Inter_18pt-Light.ttf in Resources */,
+				81EF4C14367E41C1A4D326EA /* Inter_18pt-Medium.ttf in Resources */,
+				E7E375AA9AA641DAB49AE984 /* Inter_18pt-Regular.ttf in Resources */,
+				4AA33BA6A65F4409BC09B6DF /* Inter_18pt-SemiBold.ttf in Resources */,
+				23ECB96FF6464E6CA2F02631 /* Inter_18pt-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +328,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CallEnToSport/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
@@ -273,7 +342,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.call.en.to.sport.app;
 				PRODUCT_NAME = CallEnToSport;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -288,6 +357,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CallEnToSport/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -300,7 +370,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.call.en.to.sport.app;
 				PRODUCT_NAME = CallEnToSport;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
