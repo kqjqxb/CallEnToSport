@@ -11,10 +11,10 @@ const fontOrbitronExtraBold = 'Orbitron-ExtraBold';
 
 const OnboardingScreen = () => {
   const [dimensions, setDimensions] = useState(Dimensions.get('window'));
+  const [currentCallEnSlideToSportIndex, setCurrentCallEnSlideToSportIndex] = useState(0);
+  const callEnSlidesToSportRef = useRef(null);
+  const callEnScrollToSportX = useRef(new Animated.Value(0)).current;
   const navigation = useNavigation();
-  const [currentYouMontSlideIndex, setCurrentYouMontSlideIndex] = useState(0);
-  const scrollYouMontX = useRef(new Animated.Value(0)).current;
-  const slidesYouMontRef = useRef(null);
 
   useEffect(() => {
     const onChange = ({ window }) => {
@@ -28,17 +28,17 @@ const OnboardingScreen = () => {
 
   const viewableItemsChanged = useRef(({ viewableItems }) => {
     if (viewableItems && viewableItems.length > 0) {
-      setCurrentYouMontSlideIndex(viewableItems[0].index);
+      setCurrentCallEnSlideToSportIndex(viewableItems[0].index);
     }
   }).current;
 
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
-  const scrollToTheNextYouMontSlide = () => {
-    if (currentYouMontSlideIndex < youOnboardingMontRealData.length - 1) {
-      slidesYouMontRef.current.scrollToIndex({ index: currentYouMontSlideIndex + 1 });
+  const scrollToTheNextCallEnSportSlide = () => {
+    if (currentCallEnSlideToSportIndex < youOnboardingMontRealData.length - 1) {
+      callEnSlidesToSportRef.current.scrollToIndex({ index: currentCallEnSlideToSportIndex + 1 });
     } else {
-      navigation.replace('Home');
+      navigation.replace('TermsScreen');
     }
   };
 
@@ -111,10 +111,10 @@ const OnboardingScreen = () => {
           bounces={false}
           renderItem={renderYouMontItem}
           keyExtractor={(item) => item.id.toString()}
-          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollYouMontX } } }], {
+          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: callEnScrollToSportX } } }], {
             useNativeDriver: false,
           })}
-          ref={slidesYouMontRef}
+          ref={callEnSlidesToSportRef}
           onViewableItemsChanged={viewableItemsChanged}
           scrollEventThrottle={32}
           viewabilityConfig={viewConfig}
@@ -123,9 +123,7 @@ const OnboardingScreen = () => {
 
       <TouchableOpacity
         onPress={() => {
-          if (currentYouMontSlideIndex === youOnboardingMontRealData.length - 1) {
-            navigation.replace('TermsScreen');
-          } else scrollToTheNextYouMontSlide();
+          scrollToTheNextCallEnSportSlide();
         }}
         style={{
           bottom: dimensions.height * 0.15,
@@ -173,7 +171,7 @@ const OnboardingScreen = () => {
             textTransform: 'uppercase',
             paddingHorizontal: dimensions.width * 0.05,
           }}>
-          {currentYouMontSlideIndex === 0 ? 'Hello' : currentYouMontSlideIndex === 1 ? 'Next' : 'Good!'}
+          {currentCallEnSlideToSportIndex === 0 ? 'Hello' : currentCallEnSlideToSportIndex === 1 ? 'Next' : 'Good!'}
         </Text>
       </TouchableOpacity>
     </View>

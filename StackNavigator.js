@@ -12,7 +12,7 @@ import { UserProvider, UserContext } from './src/context/UserContext';
 import { Provider, useDispatch } from 'react-redux';
 import store from './src/redux/store';
 import { loadUserData } from './src/redux/userSlice';
-import LoadYouMontAppScreen from './src/screens/LoadYouMontAppScreen';
+import CallEnLoadToSporttAppScreen from './src/screens/CallEnLoadToSporttAppScreen';
 import TermsScreen from './src/screens/TermsScreen';
 
 
@@ -36,6 +36,7 @@ const AppNavigator = () => {
   const dispatch = useDispatch();
   const [isMontOnboardingRealVisibled, setMontOnboardingRealVisibled] = useState(false);
   const { user, setUser } = useContext(UserContext);
+  const [isReadTerms, setIsReadTerms] = useState(false);
 
   const [initializingMontOnboardingRealApp, setInitializingMontOnboardingRealApp] = useState(true);
 
@@ -50,6 +51,7 @@ const AppNavigator = () => {
         const storageKey = `currentUser_${deviceId}`;
         const storedMontOnboardingRealUser = await AsyncStorage.getItem(storageKey);
         const isMontOnboardingRealVisible = await AsyncStorage.getItem('isMontOnboardingRealVisible');
+        const storedIsReadTerms = await AsyncStorage.getItem('isReadTerms');
 
         if (storedMontOnboardingRealUser) {
           setUser(JSON.parse(storedMontOnboardingRealUser));
@@ -59,6 +61,12 @@ const AppNavigator = () => {
         } else {
           setMontOnboardingRealVisibled(true);
           await AsyncStorage.setItem('isMontOnboardingRealVisible', 'true');
+        }
+
+        if (storedIsReadTerms === 'true') {
+          setIsReadTerms(true);
+        } else {
+          setIsReadTerms(false);
         }
       } catch (error) {
         console.error('Error loading of montYou Real user', error);
@@ -84,12 +92,20 @@ const AppNavigator = () => {
 
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName={isMontOnboardingRealVisibled ? 'MontOnboardingScreen' : 'MontOnboardingScreen'}>
-          <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="MontOnboardingScreen" component={OnboardingScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="TermsScreen" component={TermsScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="LoadYouMontApp" component={LoadYouMontAppScreen} options={{ headerShown: false }} />
-        </Stack.Navigator>
+      <Stack.Navigator
+        initialRouteName={
+          !isMontOnboardingRealVisibled && !isReadTerms
+            ? 'MontOnboardingScreen'
+              : isMontOnboardingRealVisibled && !isReadTerms
+                ? 'TermsScreen'
+                : 'CallEnLoadApp'
+        }
+      >
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="MontOnboardingScreen" component={OnboardingScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="TermsScreen" component={TermsScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="CallEnLoadApp" component={CallEnLoadToSporttAppScreen} options={{ headerShown: false }} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

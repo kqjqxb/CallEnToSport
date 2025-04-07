@@ -4,6 +4,7 @@ import youOnboardingMontRealData from '../components/youOnboardingMontRealData';
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import { CheckIcon } from 'react-native-heroicons/outline';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const fontInterRegular = 'Inter-Regular';
 
@@ -122,8 +123,8 @@ const TermsScreen = () => {
               paddingLeft: dimensions.width * 0.02,
               fontFamily: fontOrbitronExtraBold,
               color: 'white',
-              maxWidth: dimensions.width * 0.95,
-              fontSize: dimensions.width * 0.027,
+              maxWidth: dimensions.width * 0.8,
+              fontSize: dimensions.width * 0.032,
               textAlign: 'left',
             }}>
             I have read and accept the terms and conditions.
@@ -133,7 +134,12 @@ const TermsScreen = () => {
 
       {isRead && (
         <TouchableOpacity
-          onPress={() => {
+          onPress={async () => {
+            try {
+              await AsyncStorage.setItem('isReadTerms', 'true');
+            } catch (error) {
+              console.error('Error storing isReadTerms', error);
+            }
             navigation.replace('Home');
           }}
           style={{
