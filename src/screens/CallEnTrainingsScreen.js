@@ -164,134 +164,144 @@ const CallEnTrainingsScreen = ({ setOwnedWorkouts, ownedWorkouts, workoutIcons, 
         </SafeAreaView>
       </View>
       {!isTrainingOpened && !isTrainingStarted ? (
-        <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1, paddingBottom: dimensions.height * 0.1 }}>
-          {ownedWorkouts.map((workout, index) => (
-            <View key={workout.id} style={{
-              width: dimensions.width * 0.9,
-              backgroundColor: 'white',
-              borderRadius: dimensions.width * 0.05,
-              paddingHorizontal: dimensions.width * 0.05,
-              paddingVertical: dimensions.height * 0.02,
-              alignSelf: 'center',
-              marginTop: dimensions.height * 0.015,
-            }}>
-              <View style={{
-                flexDirection: 'row',
-                alignSelf: 'flex-start',
-                alignItems: 'center',
-                justifyContent: 'center',
+        ownedWorkouts.length === 0 ? (
+          <Text style={[styles.orbitronOrangeText, {
+            color: 'white',
+            marginTop: dimensions.height * 0.3,
+          }]}>
+            You dont have any workouts yet!
+          </Text>
+        ) : (
+          <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1, paddingBottom: dimensions.height * 0.1 }}>
+            {ownedWorkouts.map((workout, index) => (
+              <View key={workout.id} style={{
+                width: dimensions.width * 0.9,
+                backgroundColor: 'white',
+                borderRadius: dimensions.width * 0.05,
+                paddingHorizontal: dimensions.width * 0.05,
+                paddingVertical: dimensions.height * 0.02,
+                alignSelf: 'center',
+                marginTop: dimensions.height * 0.015,
               }}>
-                <Image
-                  source={workoutIcons.find((icon) => icon.callEmWorkoutTitle === workout.workoutCategory).callEmWorkoutIcon}
-                  style={{
-                    width: dimensions.width * 0.1,
-                    height: dimensions.width * 0.1,
-                  }}
-                  resizeMode="contain"
-                />
-
-                <Text style={styles.orbitronOrangeText}>
-                  {workout.title}
-                </Text>
-              </View>
-
-              <View style={{
-                width: '100%',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                marginTop: dimensions.height * 0.02,
-              }}>
-                <View>
-                  <Text style={styles.cardSilverText}>
-                    Repetitions
-                  </Text>
-
-                  <Text style={styles.cardOrangeText}>
-                    {workout.repeatingWorkout}
-                  </Text>
-                </View>
-
-                <View>
-                  <Text style={styles.cardSilverText}>
-                    Execution time:
-                  </Text>
-
-                  <Text style={styles.cardOrangeText}>
-                    {workout.executionTime} min
-                  </Text>
-                </View>
-
-                <View>
-                  <Text style={styles.cardSilverText}>
-                    Rest time:
-                  </Text>
-
-                  <Text style={styles.cardOrangeText}>
-                    {workout.restTime}
-                  </Text>
-                </View>
-              </View>
-
-              <View style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                marginTop: dimensions.height * 0.03,
-              }}>
-                <TouchableOpacity
-                  onPress={() => {
-                    setIsTrainingOpened(true);
-                    setSelectedTraining(workout);
-                  }}
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: dimensions.width * 0.55,
-                    height: dimensions.height * 0.075,
-                  }}>
-                  <LinearGradient
-                    style={styles.linearGradieint}
-                    colors={['#EB510A', '#D80715']}
-                    start={{ x: 1, y: 0 }}
-                    end={{ x: 0, y: 1 }}
-                  />
-                  <Image
-                    source={require('../assets/images/startTrainingImage.png')}
-                    style={{
-                      width: dimensions.width * 0.06,
-                      height: dimensions.width * 0.06,
-                      marginRight: dimensions.width * 0.04,
-                    }}
-                    resizeMode='contain'
-                  />
-
-                  <Text
-                    style={styles.orbitronText}
-                  >
-                    Start trining
-                  </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity 
-                  onPress={() => handleDeleteTraining(workout.id)}
-                style={{
-                  marginRight: dimensions.width * 0.07,
+                <View style={{
+                  flexDirection: 'row',
+                  alignSelf: 'flex-start',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}>
                   <Image
-                    source={require('../assets/images/deleteCallEnImage.png')}
+                    source={workoutIcons.find((icon) => icon.callEmWorkoutTitle === workout.workoutCategory).callEmWorkoutIcon}
                     style={{
-                      width: dimensions.width * 0.08,
-                      height: dimensions.width * 0.08,
+                      width: dimensions.width * 0.1,
+                      height: dimensions.width * 0.1,
                     }}
-                    resizeMode='contain'
+                    resizeMode="contain"
                   />
-                </TouchableOpacity>
+
+                  <Text style={styles.orbitronOrangeText}>
+                    {workout.title}
+                  </Text>
+                </View>
+
+                <View style={{
+                  width: '100%',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  marginTop: dimensions.height * 0.02,
+                }}>
+                  <View>
+                    <Text style={styles.cardSilverText}>
+                      Repetitions
+                    </Text>
+
+                    <Text style={styles.cardOrangeText}>
+                      {workout.repeatingWorkout}
+                    </Text>
+                  </View>
+
+                  <View>
+                    <Text style={styles.cardSilverText}>
+                      Execution time:
+                    </Text>
+
+                    <Text style={styles.cardOrangeText}>
+                      {workout.executionTime} min
+                    </Text>
+                  </View>
+
+                  <View>
+                    <Text style={styles.cardSilverText}>
+                      Rest time:
+                    </Text>
+
+                    <Text style={styles.cardOrangeText}>
+                      {workout.restTime}
+                    </Text>
+                  </View>
+                </View>
+
+                <View style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  marginTop: dimensions.height * 0.03,
+                }}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      setIsTrainingOpened(true);
+                      setSelectedTraining(workout);
+                    }}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: dimensions.width * 0.55,
+                      height: dimensions.height * 0.075,
+                    }}>
+                    <LinearGradient
+                      style={styles.linearGradieint}
+                      colors={['#EB510A', '#D80715']}
+                      start={{ x: 1, y: 0 }}
+                      end={{ x: 0, y: 1 }}
+                    />
+                    <Image
+                      source={require('../assets/images/startTrainingImage.png')}
+                      style={{
+                        width: dimensions.width * 0.06,
+                        height: dimensions.width * 0.06,
+                        marginRight: dimensions.width * 0.04,
+                      }}
+                      resizeMode='contain'
+                    />
+
+                    <Text
+                      style={styles.orbitronText}
+                    >
+                      Start trining
+                    </Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={() => handleDeleteTraining(workout.id)}
+                    style={{
+                      marginRight: dimensions.width * 0.07,
+                    }}>
+                    <Image
+                      source={require('../assets/images/deleteCallEnImage.png')}
+                      style={{
+                        width: dimensions.width * 0.08,
+                        height: dimensions.width * 0.08,
+                      }}
+                      resizeMode='contain'
+                    />
+                  </TouchableOpacity>
+                </View>
               </View>
-            </View>
-          ))}
-        </ScrollView>
+            ))}
+          </ScrollView>
+
+        )
       ) : (
         isTrainingOpened && !isTrainingStarted ? (
           <View style={styles.whiteCardView}>
@@ -375,11 +385,11 @@ const CallEnTrainingsScreen = ({ setOwnedWorkouts, ownedWorkouts, workoutIcons, 
                 </Text>
               </TouchableOpacity>
 
-              <TouchableOpacity 
+              <TouchableOpacity
                 onPress={() => handleDeleteTraining(selectedTraining.id)}
-              style={{
-                marginRight: dimensions.width * 0.04,
-              }}>
+                style={{
+                  marginRight: dimensions.width * 0.04,
+                }}>
                 <Image
                   source={require('../assets/images/deleteCallEnImage.png')}
                   style={{
