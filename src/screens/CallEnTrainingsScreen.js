@@ -354,7 +354,10 @@ const CallEnTrainingsScreen = ({ setOwnedWorkouts, ownedWorkouts, workoutIcons, 
               paddingHorizontal: dimensions.width * 0.03,
             }]}>
               <TouchableOpacity
-                onPress={handleStartTraining}
+                // onPress={handleStartTraining}
+                onPress={() => {
+                  startTrainingNow();
+                }}
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',
