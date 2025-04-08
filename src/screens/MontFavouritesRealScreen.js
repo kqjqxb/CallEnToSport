@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   ScrollView,
 } from 'react-native';
-import PlaceCardComponent from '../components/PlaceCardComponent';
+
 
 const fontInterRegular = 'Inter-Regular';
 

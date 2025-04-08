@@ -11,11 +11,10 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MontFavouritesRealScreen from './MontFavouritesRealScreen';
-import YouMontAboutApp from './YouMontAboutApp';
+import CallEmSportsFactsScreen from './CallEmSportsFactsScreen';
 
 import CallEnTrainingsScreen from './CallEnTrainingsScreen';
 
-import interestingMontFactsData from '../components/interestingMontFactsData';
 import LinearGradient from 'react-native-linear-gradient';
 import { ArrowLeftIcon, PlusCircleIcon } from 'react-native-heroicons/outline';
 
@@ -48,7 +47,7 @@ const workoutIcons = [
   {
     id: 2,
     callEmWorkoutIcon: require('../assets/icons/workoutIcons/workoutIcon2.png'),
-    callEmWorkoutTitle: 'Basketball'
+    callEmWorkoutTitle: 'Yoga'
   },
   {
     id: 3,
@@ -58,17 +57,17 @@ const workoutIcons = [
   {
     id: 4,
     callEmWorkoutIcon: require('../assets/icons/workoutIcons/workoutIcon4.png'),
-    callEmWorkoutTitle: 'Yoga'
+    callEmWorkoutTitle: 'Cardio'
   },
   {
     id: 5,
     callEmWorkoutIcon: require('../assets/icons/workoutIcons/workoutIcon5.png'),
-    callEmWorkoutTitle: 'Powerlifting'
+    callEmWorkoutTitle: 'Basketball'
   },
   {
     id: 6,
     callEmWorkoutIcon: require('../assets/icons/workoutIcons/workoutIcon6.png'),
-    callEmWorkoutTitle: 'Badminton'
+    callEmWorkoutTitle: 'Physical'
   },
 ]
 
@@ -86,7 +85,7 @@ const callEnButtonsToSport = [
   },
   {
     id: 3,
-    screen: 'YouMontAboutApp',
+    screen: 'SportsFacts',
     youIconMont: require('../assets/icons/callEnToSportButtons/callEnFactsIcon.png'),
     youMontTitle: 'ABOUT APP',
   },
@@ -261,7 +260,7 @@ const HomeScreen = () => {
                       color: 'white',
                     }}
                   >
-                    {selectedMontRealScreen === 'Trainings' ? 'MORE FAMOUS PLACES' : selectedMontRealScreen === 'YouMontAboutApp' ? 'ABOUT APP' : selectedMontRealScreen === 'MontRealFavorites' ? 'FAVORITE PLACES' : ''}
+                    {selectedMontRealScreen === 'Trainings' ? 'MORE FAMOUS PLACES' : selectedMontRealScreen === 'SportsFacts' ? 'ABOUT APP' : selectedMontRealScreen === 'MontRealFavorites' ? 'FAVORITE PLACES' : ''}
                   </Text>
                 </>
               )}
@@ -620,8 +619,8 @@ const HomeScreen = () => {
 
       ) : selectedMontRealScreen === 'MontRealFavorites' ? (
         <MontFavouritesRealScreen setSelectedMontRealScreen={setSelectedMontRealScreen} setSelectedMontRealPlace={setSelectedMontRealPlace} savedMontPlacesReal={savedMontPlacesReal} setSavedMontPlacesReal={setSavedMontPlacesReal} setMontMapRealPlaceVisible={setMontMapRealPlaceVisible} />
-      ) : selectedMontRealScreen === 'YouMontAboutApp' ? (
-        <YouMontAboutApp setSelectedMontRealScreen={setSelectedMontRealScreen} selectedMontRealPlace={selectedMontRealPlace} isMontMapRealPlaceVisible={isMontMapRealPlaceVisible} setMontMapRealPlaceVisible={setMontMapRealPlaceVisible} setSavedMontPlacesReal={setSavedMontPlacesReal} savedMontPlacesReal={savedMontPlacesReal} selectedMontRealScreen={selectedMontRealScreen} />
+      ) : selectedMontRealScreen === 'SportsFacts' ? (
+        <CallEmSportsFactsScreen setSelectedMontRealScreen={setSelectedMontRealScreen} selectedMontRealPlace={selectedMontRealPlace} workoutIcons={workoutIcons} />
       ) : selectedMontRealScreen === 'Trainings' ? (
         <CallEnTrainingsScreen setSelectedMontRealScreen={setSelectedMontRealScreen} setOwnedWorkouts={setOwnedWorkouts} ownedWorkouts={ownedWorkouts} workoutIcons={workoutIcons}  />
       ) : null}
