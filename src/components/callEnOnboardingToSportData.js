@@ -7,14 +7,14 @@ export default [
   },
   {
     id: 2,
-    title: "Try the randomizer!",
-    description: "Click and the app will choose an interesting place for you. Let the city pleasantly surprise you.",
+    title: "Room Routine — \na new style of sport",
+    description: "Kitchen, bedroom, balcony - every corner has its own meaning. You will see how easy it is to move around in a familiar space.",
     callEnImage: require('../assets/images/callEnToSportOnboarginImages/callOnbImage2.png')
   },
   {
     id: 3,
-    title: "Search and explore",
-    description: "Interactive map with all locations conveniently located and intuitive design",
+    title: "5 minutes. \nOne movement. \nGreat mood.",
+    description: "Create your own workouts, use tips from virtual trainers. A sport that adapts to you — not the other way around.",
     callEnImage: require('../assets/images/callEnToSportOnboarginImages/callOnbImage3.png')
   },
 ]

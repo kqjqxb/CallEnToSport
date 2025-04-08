@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, FlatList, Animated, Text, TouchableOpacity, Dimensions, Image, SafeAreaView } from 'react-native';
-import youOnboardingMontRealData from '../components/youOnboardingMontRealData';
+import callEnOnboardingToSportData from '../components/callEnOnboardingToSportData';
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -35,55 +35,62 @@ const OnboardingScreen = () => {
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
   const scrollToTheNextCallEnSportSlide = () => {
-    if (currentCallEnSlideToSportIndex < youOnboardingMontRealData.length - 1) {
+    if (currentCallEnSlideToSportIndex < callEnOnboardingToSportData.length - 1) {
       callEnSlidesToSportRef.current.scrollToIndex({ index: currentCallEnSlideToSportIndex + 1 });
     } else {
       navigation.replace('TermsScreen');
     }
   };
 
+  const callEnRenderItem = ({ item }) => (
+    <View style={{
+      alignItems: 'center',
 
-  const renderYouMontItem = ({ item }) => (
-    <View style={{ width: dimensions.width, flex: 1, justifyContent: 'space-between', alignItems: 'center' }} >
+      justifyContent: 'space-between',
+
+      flex: 1,
+
+      width: dimensions.width,
+    }}>
       <View style={{
-        width: dimensions.width,
-        alignSelf: 'flex-start',
         alignItems: 'center',
+        alignSelf: 'flex-start',
+        width: dimensions.width,
       }}>
         <Image
           source={item.callEnImage}
           style={{
-            width: dimensions.width,
-            height: dimensions.height * 0.6,
-            alignSelf: 'center',
             borderBottomLeftRadius: dimensions.width * 0.05,
+            width: dimensions.width,
             borderBottomRightRadius: dimensions.width * 0.05,
+            alignSelf: 'center',
+            height: dimensions.height * 0.6,
           }}
           resizeMode="stretch"
         />
         <Text
           style={{
             paddingHorizontal: dimensions.width * 0.05,
-            fontFamily: fontOrbitronExtraBold,
+            textAlign: 'left',
             color: 'white',
+            fontSize: dimensions.width * 0.065,
             maxWidth: dimensions.width * 0.89,
             alignSelf: 'flex-start',
-            fontSize: dimensions.width * 0.065,
+            fontFamily: fontOrbitronExtraBold,
             marginTop: dimensions.height * 0.02,
-            textAlign: 'left',
           }}>
           {item.title}
         </Text>
         <Text
           style={{
-            fontWeight: 400,
-            marginTop: dimensions.height * 0.02,
-            textAlign: 'left',
-            alignSelf: 'flex-start',
-            fontFamily: fontInterRegular,
             color: '#fff',
-            fontSize: dimensions.width * 0.035,
+            marginTop: dimensions.height * 0.02,
+            fontWeight: 400,
+            textAlign: 'left',
             paddingHorizontal: dimensions.width * 0.05,
+            fontFamily: fontInterRegular,
+            alignSelf: 'flex-start',
+            fontSize: dimensions.width * 0.035,
             maxWidth: dimensions.width * 0.8,
           }}>
           {item.description}
@@ -94,7 +101,12 @@ const OnboardingScreen = () => {
 
   return (
     <View
-      style={{ justifyContent: 'space-between', flex: 1, backgroundColor: '#160002', alignItems: 'center', }}
+      style={{ 
+        alignItems: 'center', 
+        backgroundColor: '#160002', 
+        flex: 1, 
+        justifyContent: 'space-between', 
+      }}
     >
       <LinearGradient
         style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }}
@@ -104,20 +116,20 @@ const OnboardingScreen = () => {
       />
       <View style={{ display: 'flex' }}>
         <FlatList
-          pagingEnabled
-          data={youOnboardingMontRealData}
+          bounces={false}
           horizontal
           showsHorizontalScrollIndicator={false}
-          bounces={false}
-          renderItem={renderYouMontItem}
+          pagingEnabled
+          renderItem={callEnRenderItem}
+          data={callEnOnboardingToSportData}
+          viewabilityConfig={viewConfig}
           keyExtractor={(item) => item.id.toString()}
           onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: callEnScrollToSportX } } }], {
             useNativeDriver: false,
           })}
           ref={callEnSlidesToSportRef}
-          onViewableItemsChanged={viewableItemsChanged}
           scrollEventThrottle={32}
-          viewabilityConfig={viewConfig}
+          onViewableItemsChanged={viewableItemsChanged}
         />
       </View>
 
@@ -126,14 +138,14 @@ const OnboardingScreen = () => {
           scrollToTheNextCallEnSportSlide();
         }}
         style={{
-          bottom: dimensions.height * 0.15,
           borderRadius: dimensions.width * 0.055,
-          width: dimensions.width * 0.45,
-          height: dimensions.height * 0.08,
-          justifyContent: 'center',
-          alignItems: 'center',
-          alignSelf: 'flex-start',
           marginLeft: dimensions.width * 0.04,
+          width: dimensions.width * 0.45,
+          alignItems: 'center',
+          justifyContent: 'center',
+          bottom: dimensions.height * 0.15,
+          alignSelf: 'flex-start',
+          height: dimensions.height * 0.08,
         }}
       >
         <LinearGradient

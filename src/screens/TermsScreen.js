@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { View, FlatList, Animated, Text, TouchableOpacity, Dimensions, Image, SafeAreaView } from 'react-native';
-import youOnboardingMontRealData from '../components/youOnboardingMontRealData';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Dimensions, Image, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import { CheckIcon } from 'react-native-heroicons/outline';

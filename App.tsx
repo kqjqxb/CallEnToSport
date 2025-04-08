@@ -1,8 +1,8 @@
 import React from 'react';
-import YouMontRealStask from './StackNavigator';
+import CallEnToSportStack from './StackNavigator';
 
 function App() {
-  return <YouMontRealStask />;
+  return <CallEnToSportStack />;
 }
 
 export default App;

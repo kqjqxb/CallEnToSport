@@ -7,17 +7,17 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const loadMontUser = async () => {
+    const loadCallEnToSportUser = async () => {
       try {
-        const storedMontUser = await AsyncStorage.getItem('currentUser');
-        if (storedMontUser) {
-          setUser(JSON.parse(storedMontUser));
+        const storedCallEnToSportUser = await AsyncStorage.getItem('currentUser');
+        if (storedCallEnToSportUser) {
+          setUser(JSON.parse(storedCallEnToSportUser));
         }
       } catch (error) {
-        console.error('Error loading mont user data:', error);
+        console.error('Error loading CallEnToSport user:', error);
       }
     };
-    loadMontUser();
+    loadCallEnToSportUser();
   }, []);
 
   return (

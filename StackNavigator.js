@@ -18,7 +18,7 @@ import TermsScreen from './src/screens/TermsScreen';
 
 const Stack = createNativeStackNavigator();
 
-const YouMontRealStask = () => {
+const CallEnToSportStack = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Provider store={store}>
@@ -34,33 +34,33 @@ const YouMontRealStask = () => {
 
 const AppNavigator = () => {
   const dispatch = useDispatch();
-  const [isMontOnboardingRealVisibled, setMontOnboardingRealVisibled] = useState(false);
+  const [isCallEnOnboardingToSportVisibled, setIsCallEnOnboardingToSportVisibled] = useState(false);
   const { user, setUser } = useContext(UserContext);
   const [isReadTerms, setIsReadTerms] = useState(false);
 
-  const [initializingMontOnboardingRealApp, setInitializingMontOnboardingRealApp] = useState(true);
+  const [initializingCallEnToSportApp, setInitializingCallEnToSportApp] = useState(true);
 
   useEffect(() => {
     dispatch(loadUserData());
   }, [dispatch]);
 
   useEffect(() => {
-    const loadMontOnboardingRealUser = async () => {
+    const loadCallEnToSportUser = async () => {
       try {
         const deviceId = await DeviceInfo.getUniqueId();
         const storageKey = `currentUser_${deviceId}`;
-        const storedMontOnboardingRealUser = await AsyncStorage.getItem(storageKey);
-        const isMontOnboardingRealVisible = await AsyncStorage.getItem('isMontOnboardingRealVisible');
+        const storedCallEnToSportUser = await AsyncStorage.getItem(storageKey);
+        const isCallEnOnboardingWasVisibled = await AsyncStorage.getItem('isCallEnOnboardingWasVisibled');
         const storedIsReadTerms = await AsyncStorage.getItem('isReadTerms');
 
-        if (storedMontOnboardingRealUser) {
-          setUser(JSON.parse(storedMontOnboardingRealUser));
-          setMontOnboardingRealVisibled(false);
-        } else if (isMontOnboardingRealVisible) {
-          setMontOnboardingRealVisibled(false);
+        if (storedCallEnToSportUser) {
+          setUser(JSON.parse(storedCallEnToSportUser));
+          setIsCallEnOnboardingToSportVisibled(false);
+        } else if (isCallEnOnboardingWasVisibled) {
+          setIsCallEnOnboardingToSportVisibled(false);
         } else {
-          setMontOnboardingRealVisibled(true);
-          await AsyncStorage.setItem('isMontOnboardingRealVisible', 'true');
+          setIsCallEnOnboardingToSportVisibled(true);
+          await AsyncStorage.setItem('isCallEnOnboardingWasVisibled', 'true');
         }
 
         if (storedIsReadTerms === 'true') {
@@ -71,21 +71,21 @@ const AppNavigator = () => {
       } catch (error) {
         console.error('Error loading of montYou Real user', error);
       } finally {
-        setInitializingMontOnboardingRealApp(false);
+        setInitializingCallEnToSportApp(false);
       }
     };
-    loadMontOnboardingRealUser();
+    loadCallEnToSportUser();
   }, [setUser]);
 
-  if (initializingMontOnboardingRealApp) {
+  if (initializingCallEnToSportApp) {
     return (
       <View style={{
-        justifyContent: 'center',
-        alignItems: 'center',
+        backgroundColor: '#EB510A',
         flex: 1,
-        backgroundColor: '#2F2E31',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
-        <ActivityIndicator size="large" color="#CCA65A" />
+        <ActivityIndicator size="large" color="white" />
       </View>
     );
   }
@@ -94,15 +94,15 @@ const AppNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName={
-          !isMontOnboardingRealVisibled && !isReadTerms
-            ? 'MontOnboardingScreen'
-              : isMontOnboardingRealVisibled && !isReadTerms
-                ? 'TermsScreen'
-                : 'CallEnLoadApp'
+          isCallEnOnboardingToSportVisibled
+            ? 'CallEnOnbToSportScreen'
+            : !isReadTerms
+              ? 'TermsScreen'
+              : 'CallEnLoadApp'
         }
       >
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="MontOnboardingScreen" component={OnboardingScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="CallEnOnbToSportScreen" component={OnboardingScreen} options={{ headerShown: false }} />
         <Stack.Screen name="TermsScreen" component={TermsScreen} options={{ headerShown: false }} />
         <Stack.Screen name="CallEnLoadApp" component={CallEnLoadToSporttAppScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
@@ -111,4 +111,4 @@ const AppNavigator = () => {
 };
 
 
-export default YouMontRealStask;
+export default CallEnToSportStack;

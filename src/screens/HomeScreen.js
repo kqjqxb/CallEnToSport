@@ -10,7 +10,7 @@ import {
   TextInput,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import MontFavouritesRealScreen from './MontFavouritesRealScreen';
+import CallEnSettingsScreen from './CallEnSettingsScreen';
 import CallEmSportsFactsScreen from './CallEmSportsFactsScreen';
 
 import CallEnTrainingsScreen from './CallEnTrainingsScreen';
@@ -91,7 +91,7 @@ const callEnButtonsToSport = [
   },
   {
     id: 4,
-    screen: 'MontRealFavorites',
+    screen: 'CallEnSettings',
     youIconMont: require('../assets/icons/callEnToSportButtons/callEnSettingsIcon.png'),
     youMontTitle: 'FAVORITE PLACES',
   },
@@ -99,10 +99,8 @@ const callEnButtonsToSport = [
 
 const HomeScreen = () => {
   const [dimensions, setDimensions] = useState(Dimensions.get('window'));
-  const [selectedMontRealScreen, setSelectedMontRealScreen] = useState('Home');
-  const [savedMontPlacesReal, setSavedMontPlacesReal] = useState([]);
-  const [isMontMapRealPlaceVisible, setMontMapRealPlaceVisible] = useState(false);
-  const [selectedMontRealPlace, setSelectedMontRealPlace] = useState(null);
+  const [selectedCallEnScreenToSport, setSelectedCallEnScreenToSport] = useState('Home');
+
   const styles = createCallEnStyles(dimensions);
   const [isCreatingWorkoutNow, setIsCreatingWorkoutNow] = useState(false);
   const [isSelectCategoryWasVisible, setIsSelectCategoryWasVisible] = useState(false);
@@ -114,9 +112,22 @@ const HomeScreen = () => {
   const [selectedRestTime, setSelectedRestTime] = useState('');
   const [ownedWorkouts, setOwnedWorkouts] = useState([]);
 
+  const [name, setName] = useState(null);
+
   useEffect(() => {
-    console.log('ownedWorkouts:', ownedWorkouts);
-  }, [ownedWorkouts])
+    const loadData = async () => {
+      try {
+        const savedName = await AsyncStorage.getItem('userName');
+
+        if (savedName !== null) {
+          setName(savedName);
+        }
+      } catch (error) {
+        console.error('Error loading name data', error);
+      }
+    };
+    loadData();
+  }, [selectedCallEnScreenToSport]);
 
   const saveNewWorkout = async () => {
     try {
@@ -145,7 +156,7 @@ const HomeScreen = () => {
       setIsSelectCategoryWasVisible(false);
       setIsCreatingWorkoutNow(false);
 
-      setSelectedMontRealScreen('Trainings');
+      setSelectedCallEnScreenToSport('Trainings');
     } catch (error) {
       console.error('Error saving newWorkout:', error);
     }
@@ -164,7 +175,7 @@ const HomeScreen = () => {
     };
 
     loadOwnedWorkouts();
-  }, [selectedMontRealScreen]);
+  }, [selectedCallEnScreenToSport]);
 
   return (
     <View style={{
@@ -179,9 +190,7 @@ const HomeScreen = () => {
         start={{ x: 0.5, y: 0 }}
         end={{ x: 0.5, y: 1 }}
       />
-
-
-      {selectedMontRealScreen === 'Home' ? (
+      {selectedCallEnScreenToSport === 'Home' ? (
         <>
           <View style={{
             backgroundColor: '#98000A',
@@ -198,7 +207,7 @@ const HomeScreen = () => {
               alignItems: 'center',
               flex: 1,
             }}>
-              {selectedMontRealScreen === 'Home' ? (
+              {selectedCallEnScreenToSport === 'Home' ? (
                 isCreatingWorkoutNow ? (
                   <View style={{
                     flexDirection: 'row',
@@ -260,7 +269,7 @@ const HomeScreen = () => {
                       color: 'white',
                     }}
                   >
-                    {selectedMontRealScreen === 'Trainings' ? 'MORE FAMOUS PLACES' : selectedMontRealScreen === 'SportsFacts' ? 'ABOUT APP' : selectedMontRealScreen === 'MontRealFavorites' ? 'FAVORITE PLACES' : ''}
+                    {selectedCallEnScreenToSport === 'Trainings' ? 'MORE FAMOUS PLACES' : selectedCallEnScreenToSport === 'SportsFacts' ? 'ABOUT APP' : selectedCallEnScreenToSport === 'CallEnSettings' ? 'FAVORITE PLACES' : ''}
                   </Text>
                 </>
               )}
@@ -292,7 +301,7 @@ const HomeScreen = () => {
                       paddingHorizontal: dimensions.width * 0.06,
                     }}
                   >
-                    Hey, Ben 👋
+                    {name ? `Hey, ${name}` : 'Hello'} 👋
                   </Text>
                 </View>
 
@@ -616,13 +625,12 @@ const HomeScreen = () => {
             )}
           </SafeAreaView>
         </>
-
-      ) : selectedMontRealScreen === 'MontRealFavorites' ? (
-        <MontFavouritesRealScreen setSelectedMontRealScreen={setSelectedMontRealScreen} setSelectedMontRealPlace={setSelectedMontRealPlace} savedMontPlacesReal={savedMontPlacesReal} setSavedMontPlacesReal={setSavedMontPlacesReal} setMontMapRealPlaceVisible={setMontMapRealPlaceVisible} />
-      ) : selectedMontRealScreen === 'SportsFacts' ? (
-        <CallEmSportsFactsScreen setSelectedMontRealScreen={setSelectedMontRealScreen} selectedMontRealPlace={selectedMontRealPlace} workoutIcons={workoutIcons} />
-      ) : selectedMontRealScreen === 'Trainings' ? (
-        <CallEnTrainingsScreen setSelectedMontRealScreen={setSelectedMontRealScreen} setOwnedWorkouts={setOwnedWorkouts} ownedWorkouts={ownedWorkouts} workoutIcons={workoutIcons}  />
+      ) : selectedCallEnScreenToSport === 'CallEnSettings' ? (
+        <CallEnSettingsScreen setSelectedCallEnScreenToSport={setSelectedCallEnScreenToSport}  />
+      ) : selectedCallEnScreenToSport === 'SportsFacts' ? (
+        <CallEmSportsFactsScreen setSelectedCallEnScreenToSport={setSelectedCallEnScreenToSport} workoutIcons={workoutIcons} />
+      ) : selectedCallEnScreenToSport === 'Trainings' ? (
+        <CallEnTrainingsScreen setSelectedCallEnScreenToSport={setSelectedCallEnScreenToSport} setOwnedWorkouts={setOwnedWorkouts} ownedWorkouts={ownedWorkouts} workoutIcons={workoutIcons} />
       ) : null}
 
       <View
@@ -646,17 +654,17 @@ const HomeScreen = () => {
         {callEnButtonsToSport.map((button, index) => (
           <TouchableOpacity
             key={button.id}
-            onPress={() => setSelectedMontRealScreen(button.screen)}
+            onPress={() => setSelectedCallEnScreenToSport(button.screen)}
             style={{
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: selectedMontRealScreen === button.screen ? '#A53319' : 'transparent',
+              backgroundColor: selectedCallEnScreenToSport === button.screen ? '#A53319' : 'transparent',
               width: dimensions.height * 0.069,
               height: dimensions.height * 0.069,
               borderRadius: dimensions.height * 0.015,
             }}
           >
-            {selectedMontRealScreen === button.screen && (
+            {selectedCallEnScreenToSport === button.screen && (
               <LinearGradient
                 style={[styles.linearGradieint, {
                   borderRadius: dimensions.width * 0.025,
