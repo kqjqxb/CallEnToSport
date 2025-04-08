@@ -13,7 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import MontFavouritesRealScreen from './MontFavouritesRealScreen';
 import YouMontAboutApp from './YouMontAboutApp';
 
-import MontFamousPlacesScreen from './MontFamousPlacesScreen';
+import CallEnTrainingsScreen from './CallEnTrainingsScreen';
 
 import interestingMontFactsData from '../components/interestingMontFactsData';
 import LinearGradient from 'react-native-linear-gradient';
@@ -80,7 +80,7 @@ const callEnButtonsToSport = [
   },
   {
     id: 2,
-    screen: 'FamousPlaces',
+    screen: 'Trainings',
     youIconMont: require('../assets/icons/callEnToSportButtons/callEnTrainingIcon.png'),
     youMontTitle: 'MORE FAMOUS PLACES',
   },
@@ -115,19 +115,9 @@ const HomeScreen = () => {
   const [selectedRestTime, setSelectedRestTime] = useState('');
   const [ownedWorkouts, setOwnedWorkouts] = useState([]);
 
-  const loadMontSavedPlaces = async () => {
-    try {
-      const storedMontSavedPlaces = await AsyncStorage.getItem('savedMontPlacesReal');
-      const parsedMontSavedPlaces = storedMontSavedPlaces ? JSON.parse(storedMontSavedPlaces) : [];
-      setSavedMontPlacesReal(parsedMontSavedPlaces);
-    } catch (error) {
-      console.error('Error loading savedMontPlacesReal:', error);
-    }
-  };
-
   useEffect(() => {
-    loadMontSavedPlaces();
-  }, []);
+    console.log('ownedWorkouts:', ownedWorkouts);
+  }, [ownedWorkouts])
 
   const saveNewWorkout = async () => {
     try {
@@ -141,6 +131,7 @@ const HomeScreen = () => {
         repeatingWorkout,
         executionTime,
         restTime: selectedRestTime,
+        workoutCategory: selectedWorkoutCategory,
       };
 
       ownedWorkouts.unshift(newWorkout);
@@ -154,6 +145,8 @@ const HomeScreen = () => {
       setSelectedWorkoutCategory(null);
       setIsSelectCategoryWasVisible(false);
       setIsCreatingWorkoutNow(false);
+
+      setSelectedMontRealScreen('Trainings');
     } catch (error) {
       console.error('Error saving newWorkout:', error);
     }
@@ -187,446 +180,450 @@ const HomeScreen = () => {
         start={{ x: 0.5, y: 0 }}
         end={{ x: 0.5, y: 1 }}
       />
-      <View style={{
-        backgroundColor: '#98000A',
-        alignItems: 'center',
-        height: dimensions.height * 0.15,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        width: dimensions.width,
-        borderBottomLeftRadius: dimensions.width * 0.112,
-        borderBottomRightRadius: dimensions.width * 0.112,
-      }}>
-        <SafeAreaView style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          flex: 1,
-        }}>
-          {selectedMontRealScreen === 'Home' ? (
-            isCreatingWorkoutNow ? (
-              <View style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                marginTop: -dimensions.height * 0.015,
-                width: dimensions.width * 0.87
-              }}>
-                <TouchableOpacity onPress={() => {
-                  if (isSelectCategoryWasVisible) setIsSelectCategoryWasVisible(false);
-                  else setIsCreatingWorkoutNow(false);
-                }}
-                  style={{
-                    width: dimensions.width * 0.08,
-                    height: dimensions.width * 0.08,
-                  }}
-                >
-                  <ArrowLeftIcon size={dimensions.width * 0.08} color='white' />
-                </TouchableOpacity>
 
-                <Text
-                  style={{
-                    textAlign: "center",
-                    textTransform: 'uppercase',
-                    fontFamily: fontOrbitronExtraBold,
-                    fontSize: dimensions.width * 0.05,
-                    color: 'white',
-                    marginLeft: -dimensions.width * 0.03,
-                    flex: 1
-                  }}
-                >
-                  Create workout
-                </Text>
-              </View>
-            ) : (
-              <Image
-                source={require('../assets/images/callEnTopImage.png')}
-                style={{
-                  alignSelf: 'center',
-                  height: dimensions.height * 0.08,
-                  top: -dimensions.height * 0.01,
-                  width: dimensions.width * 0.6,
-                }}
-                resizeMode='contain'
-              />
-            )
-          ) : (
-            <>
-              <Text
-                style={{
-                  top: -dimensions.height * 0.01,
-                  textAlign: "left",
-                  alignSelf: 'flex-start',
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  fontFamily: fontInterRegular,
-                  fontSize: dimensions.width * 0.07,
-                  paddingHorizontal: dimensions.width * 0.04,
-                  color: 'white',
-                }}
-              >
-                {selectedMontRealScreen === 'FamousPlaces' ? 'MORE FAMOUS PLACES' : selectedMontRealScreen === 'YouMontAboutApp' ? 'ABOUT APP' : selectedMontRealScreen === 'MontRealFavorites' ? 'FAVORITE PLACES' : ''}
-              </Text>
-            </>
-          )}
-        </SafeAreaView>
-      </View>
 
       {selectedMontRealScreen === 'Home' ? (
-        <SafeAreaView style={{
-          flex: 1,
-          paddingHorizontal: dimensions.width * 0.05,
-          width: dimensions.width,
-        }}>
-          {!isCreatingWorkoutNow ? (
-            <>
-              <View style={{
-                alignSelf: 'center',
-                backgroundColor: 'white',
-                borderRadius: dimensions.width * 0.05,
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginTop: dimensions.height * 0.015
-              }}>
-                <Text
-                  style={{
-                    textAlign: "center",
-                    textTransform: 'uppercase',
-                    fontFamily: fontOrbitronExtraBold,
-                    fontSize: dimensions.width * 0.055,
-                    paddingVertical: dimensions.height * 0.015,
-                    color: '#EB510A',
-                    paddingHorizontal: dimensions.width * 0.06,
-                  }}
-                >
-                  Hey, Ben 👋
-                </Text>
-              </View>
-
-              <Text
-                style={[styles.orbitronText, {
-                  marginTop: dimensions.height * 0.02,
-                }]}
-              >
-                Choose where you
-                {'\n'}train today
-              </Text>
-
-              <View style={{
-                alignSelf: 'center',
-                backgroundColor: 'white',
-                borderRadius: dimensions.width * 0.04,
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                paddingHorizontal: dimensions.width * 0.09,
-                marginTop: dimensions.height * 0.015,
-                flexDirection: 'row',
-                alignItems: 'center',
-                width: dimensions.width * 0.7,
-                height: dimensions.height * 0.13,
-              }}>
-                {trainButtons.map((button, index) => (
-                  <TouchableOpacity key={button.id} >
-                    <Image
-                      source={button.trainImage}
-                      style={{
-                        width: dimensions.height * 0.04,
-                        height: dimensions.height * 0.04,
-                      }}
-                      resizeMode='contain'
-                    />
-                  </TouchableOpacity>
-                ))}
-              </View>
-
-              <Text
-                style={[styles.orbitronText, {
-                  marginTop: dimensions.height * 0.04,
-                }]}
-              >
-                Personal training
-              </Text>
-
-              <View style={{
-                alignSelf: 'center',
-                backgroundColor: 'white',
-                borderRadius: dimensions.width * 0.05,
-                alignItems: 'center',
-                justifyContent: 'center',
-                paddingHorizontal: dimensions.width * 0.015,
-                marginTop: dimensions.height * 0.015,
-                flexDirection: 'row',
-                alignItems: 'center',
-                width: dimensions.width * 0.9,
-                height: dimensions.height * 0.111,
-              }}>
-                <Text
-                  style={{
-                    textAlign: "center",
-                    textTransform: 'uppercase',
-                    fontFamily: fontOrbitronExtraBold,
-                    fontSize: dimensions.width * 0.035,
-                    paddingVertical: dimensions.height * 0.015,
-                    color: 'black',
-                  }}
-                >
-                  Create your own workout
-                </Text>
-
-                <TouchableOpacity
-                  onPress={() => {
-                    setIsCreatingWorkoutNow(true);
-                  }}
-                  style={{
-                    width: dimensions.width * 0.14,
-                    height: dimensions.width * 0.14,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginLeft: dimensions.width * 0.04,
-
-                  }}
-                >
-                  <LinearGradient
-                    style={[styles.linearGradieint, {
-                      borderRadius: dimensions.width * 0.025,
-                    }]}
-                    colors={['#EB510A', '#D80715']}
-                    start={{ x: 1, y: 0 }}
-                    end={{ x: 0, y: 1 }}
-                  />
-                  <PlusCircleIcon size={dimensions.width * 0.075} color='white' />
-                </TouchableOpacity>
-              </View>
-            </>
-          ) : (
-            <>
-              {!isSelectCategoryWasVisible ? (
-                <>
-                  <Text style={styles.orbitronMediumSizeText}>
-                    Select a workout category
-                  </Text>
-
+        <>
+          <View style={{
+            backgroundColor: '#98000A',
+            alignItems: 'center',
+            height: dimensions.height * 0.15,
+            alignSelf: 'center',
+            justifyContent: 'center',
+            width: dimensions.width,
+            borderBottomLeftRadius: dimensions.width * 0.112,
+            borderBottomRightRadius: dimensions.width * 0.112,
+          }}>
+            <SafeAreaView style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              flex: 1,
+            }}>
+              {selectedMontRealScreen === 'Home' ? (
+                isCreatingWorkoutNow ? (
                   <View style={{
-                    width: dimensions.width * 0.9,
                     flexDirection: 'row',
                     alignItems: 'center',
-                    justifyContent: 'space-between',
-                    flexWrap: 'wrap',
-                    alignSelf: 'center',
-                    marginTop: dimensions.height * 0.025
+                    justifyContent: 'flex-start',
+                    marginTop: -dimensions.height * 0.015,
+                    width: dimensions.width * 0.87
                   }}>
-                    {workoutIcons.map((workoutIcon, index) => (
-                      <TouchableOpacity
-                        key={workoutIcon.id}
-                        onPress={() => {
-                          if (selectedWorkoutCategory === workoutIcon.callEmWorkoutTitle) {
-                            setSelectedWorkoutCategory(null);
-                          } else setSelectedWorkoutCategory(workoutIcon.callEmWorkoutTitle);
-                        }}
-                        style={{
-                          width: dimensions.width * 0.285,
-                          backgroundColor: '#fff',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          borderRadius: dimensions.width * 0.05,
-                          marginTop: dimensions.height * 0.012,
-                          height: dimensions.width * 0.285,
-                          opacity: selectedWorkoutCategory === workoutIcon.callEmWorkoutTitle || !selectedWorkoutCategory ? 1 : 0.5,
-                        }}>
-                        <Image
-                          source={workoutIcon.callEmWorkoutIcon}
-                          style={{
-                            width: dimensions.width * 0.1,
-                            height: dimensions.width * 0.1,
-                          }}
-                          resizeMode='contain'
-                        />
-
-                      </TouchableOpacity>
-                    ))}
-                  </View>
-
-                  {selectedWorkoutCategory && (
-                    <TouchableOpacity
-                      onPress={async () => {
-                        setIsSelectCategoryWasVisible(true);
-                      }}
+                    <TouchableOpacity onPress={() => {
+                      if (isSelectCategoryWasVisible) setIsSelectCategoryWasVisible(false);
+                      else setIsCreatingWorkoutNow(false);
+                    }}
                       style={{
-                        width: dimensions.width * 0.45,
-                        height: dimensions.height * 0.08,
-                        marginTop: dimensions.height * 0.07,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        alignSelf: 'center',
+                        width: dimensions.width * 0.08,
+                        height: dimensions.width * 0.08,
                       }}
                     >
-                      <LinearGradient
-                        style={[styles.linearGradieint, {
-                          borderRadius: dimensions.width * 0.03,
-                          borderColor: '#fff',
-                          borderWidth: dimensions.width * 0.0015,
-                        }]}
-                        colors={['#EB510A', '#D80715']}
-                        start={{ x: 1, y: 0 }}
-                        end={{ x: 0, y: 1 }}
-                      />
-                      <Text
-                        style={{
-                          textAlign: 'center',
-                          fontWeight: 700,
-                          fontFamily: fontOrbitronRegular,
-                          fontSize: dimensions.width * 0.05,
-                          color: '#fff',
-                          paddingHorizontal: dimensions.width * 0.05,
-                        }}>
-                        Continue
-                      </Text>
+                      <ArrowLeftIcon size={dimensions.width * 0.08} color='white' />
                     </TouchableOpacity>
-                  )}
-                </>
+
+                    <Text
+                      style={{
+                        textAlign: "center",
+                        textTransform: 'uppercase',
+                        fontFamily: fontOrbitronExtraBold,
+                        fontSize: dimensions.width * 0.05,
+                        color: 'white',
+                        marginLeft: -dimensions.width * 0.03,
+                        flex: 1
+                      }}
+                    >
+                      Create workout
+                    </Text>
+                  </View>
+                ) : (
+                  <Image
+                    source={require('../assets/images/callEnTopImage.png')}
+                    style={{
+                      alignSelf: 'center',
+                      height: dimensions.height * 0.08,
+                      top: -dimensions.height * 0.01,
+                      width: dimensions.width * 0.6,
+                    }}
+                    resizeMode='contain'
+                  />
+                )
               ) : (
                 <>
-                  <Text style={styles.orbitronMediumSizeText}>
-                    Name workout
-                  </Text>
-
-                  <TextInput
-                    placeholder="Name workout"
-                    maxLength={8}
-                    value={nameWorkout}
-                    onChangeText={setNameWorkout}
-                    placeholderTextColor="#818181"
-                    style={[styles.callEnTextInputStyles, {
-                      alignSelf: 'center',
-                      fontFamily: fontInterRegular,
-                      fontWeight: executionTime.length > 0 ? 600 : 400,
-                    }]}
-                  />
-
-                  <Text style={styles.orbitronMediumSizeText}>
-                    Repeating the exercise:
-                  </Text>
-
-                  <TextInput
-                    placeholder="Repetitions"
-                    maxLength={3}
-                    value={repeatingWorkout}
-                    keyboardType='numeric'
-                    onChangeText={setRepeatingWorkout}
-                    placeholderTextColor="#818181"
-                    style={[styles.callEnTextInputStyles, {
-                      alignSelf: 'center',
-                      fontFamily: fontInterRegular,
-                      fontWeight: executionTime.length > 0 ? 600 : 400,
-                    }]}
-                  />
-
-                  <Text style={styles.orbitronMediumSizeText}>
-                    How long does it take?
-                  </Text>
-
-                  <TextInput
-                    placeholder="Execution time"
-                    value={executionTime}
-                    onChangeText={setExecutionTime}
-                    placeholderTextColor="#818181"
-                    style={[styles.callEnTextInputStyles, {
-                      alignSelf: 'center',
-                      fontFamily: fontInterRegular,
-                      fontWeight: executionTime.length > 0 ? 600 : 400,
-                    }]}
-                  />
-
-                  <View style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    marginTop: dimensions.height * 0.04,
-                    width: dimensions.width * 0.9,
-                    alignSelf: 'center',
-                  }}>
-                    <Text style={{
+                  <Text
+                    style={{
+                      top: -dimensions.height * 0.01,
                       textAlign: "left",
-                      fontFamily: fontOrbitronExtraBold,
-                      fontSize: dimensions.width * 0.045,
+                      alignSelf: 'flex-start',
+                      fontWeight: 700,
+                      textTransform: 'uppercase',
+                      fontFamily: fontInterRegular,
+                      fontSize: dimensions.width * 0.07,
+                      paddingHorizontal: dimensions.width * 0.04,
                       color: 'white',
-                    }}>
-                      Reset time:
-                    </Text>
-
-                    {['1 min', '2 min', '3 min'].map((time, index) => (
-                      <TouchableOpacity
-                        key={time}
-                        onPress={() => {
-                          if (selectedRestTime === time) {
-                            setSelectedRestTime('');
-                          } else setSelectedRestTime(time);
-                        }}
-                        style={{
-                          width: dimensions.width * 0.17,
-                          height: dimensions.width * 0.17,
-                          backgroundColor: '#fff',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          borderRadius: dimensions.width * 0.03,
-                          opacity: selectedRestTime === time || selectedRestTime === '' ? 1 : 0.5,
-                        }}>
-                        <Text style={{
-                          textAlign: "center",
-                          fontFamily: fontInterRegular,
-                          fontWeight: 600,
-                          fontSize: dimensions.width * 0.04,
-                          color: selectedRestTime === time ? 'black' : '#818181',
-                          textTransform: 'uppercase',
-                        }}>
-                          {time}
-                        </Text>
-                      </TouchableOpacity>
-                    ))}
-                  </View>
-
-                  {nameWorkout.length > 0 && repeatingWorkout.length > 0 && executionTime.length > 0 && selectedRestTime.length > 0 && (
-                    <TouchableOpacity
-                      onPress={() => {
-                        saveNewWorkout();
-                      }}
-                      style={{
-                        alignSelf: 'center',
-                        backgroundColor: 'white',
-                        borderRadius: dimensions.width * 0.03,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginTop: dimensions.height * 0.025,
-                        width: dimensions.width * 0.4,
-                        height: dimensions.height * 0.07,
-                      }}>
-                      <Text
-                        style={{
-                          textAlign: "center",
-                          fontFamily: fontOrbitronExtraBold,
-                          fontSize: dimensions.width * 0.05,
-                          paddingVertical: dimensions.height * 0.015,
-                          color: '#EB510A',
-                          paddingHorizontal: dimensions.width * 0.06,
-                        }}
-                      >
-                        Create
-                      </Text>
-                    </TouchableOpacity>
-                  )}
-
+                    }}
+                  >
+                    {selectedMontRealScreen === 'Trainings' ? 'MORE FAMOUS PLACES' : selectedMontRealScreen === 'YouMontAboutApp' ? 'ABOUT APP' : selectedMontRealScreen === 'MontRealFavorites' ? 'FAVORITE PLACES' : ''}
+                  </Text>
                 </>
               )}
-            </>
-          )}
+            </SafeAreaView>
+          </View>
+          <SafeAreaView style={{
+            flex: 1,
+            paddingHorizontal: dimensions.width * 0.05,
+            width: dimensions.width,
+          }}>
+            {!isCreatingWorkoutNow ? (
+              <>
+                <View style={{
+                  alignSelf: 'center',
+                  backgroundColor: 'white',
+                  borderRadius: dimensions.width * 0.05,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginTop: dimensions.height * 0.015
+                }}>
+                  <Text
+                    style={{
+                      textAlign: "center",
+                      textTransform: 'uppercase',
+                      fontFamily: fontOrbitronExtraBold,
+                      fontSize: dimensions.width * 0.055,
+                      paddingVertical: dimensions.height * 0.015,
+                      color: '#EB510A',
+                      paddingHorizontal: dimensions.width * 0.06,
+                    }}
+                  >
+                    Hey, Ben 👋
+                  </Text>
+                </View>
 
+                <Text
+                  style={[styles.orbitronText, {
+                    marginTop: dimensions.height * 0.02,
+                  }]}
+                >
+                  Choose where you
+                  {'\n'}train today
+                </Text>
 
-        </SafeAreaView>
+                <View style={{
+                  alignSelf: 'center',
+                  backgroundColor: 'white',
+                  borderRadius: dimensions.width * 0.04,
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  paddingHorizontal: dimensions.width * 0.09,
+                  marginTop: dimensions.height * 0.015,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  width: dimensions.width * 0.7,
+                  height: dimensions.height * 0.13,
+                }}>
+                  {trainButtons.map((button, index) => (
+                    <TouchableOpacity key={button.id} >
+                      <Image
+                        source={button.trainImage}
+                        style={{
+                          width: dimensions.height * 0.04,
+                          height: dimensions.height * 0.04,
+                        }}
+                        resizeMode='contain'
+                      />
+                    </TouchableOpacity>
+                  ))}
+                </View>
+
+                <Text
+                  style={[styles.orbitronText, {
+                    marginTop: dimensions.height * 0.04,
+                  }]}
+                >
+                  Personal training
+                </Text>
+
+                <View style={{
+                  alignSelf: 'center',
+                  backgroundColor: 'white',
+                  borderRadius: dimensions.width * 0.05,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  paddingHorizontal: dimensions.width * 0.015,
+                  marginTop: dimensions.height * 0.015,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  width: dimensions.width * 0.9,
+                  height: dimensions.height * 0.111,
+                }}>
+                  <Text
+                    style={{
+                      textAlign: "center",
+                      textTransform: 'uppercase',
+                      fontFamily: fontOrbitronExtraBold,
+                      fontSize: dimensions.width * 0.035,
+                      paddingVertical: dimensions.height * 0.015,
+                      color: 'black',
+                    }}
+                  >
+                    Create your own workout
+                  </Text>
+
+                  <TouchableOpacity
+                    onPress={() => {
+                      setIsCreatingWorkoutNow(true);
+                    }}
+                    style={{
+                      width: dimensions.width * 0.14,
+                      height: dimensions.width * 0.14,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      marginLeft: dimensions.width * 0.04,
+
+                    }}
+                  >
+                    <LinearGradient
+                      style={[styles.linearGradieint, {
+                        borderRadius: dimensions.width * 0.025,
+                      }]}
+                      colors={['#EB510A', '#D80715']}
+                      start={{ x: 1, y: 0 }}
+                      end={{ x: 0, y: 1 }}
+                    />
+                    <PlusCircleIcon size={dimensions.width * 0.075} color='white' />
+                  </TouchableOpacity>
+                </View>
+              </>
+            ) : (
+              <>
+                {!isSelectCategoryWasVisible ? (
+                  <>
+                    <Text style={styles.orbitronMediumSizeText}>
+                      Select a workout category
+                    </Text>
+
+                    <View style={{
+                      width: dimensions.width * 0.9,
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      flexWrap: 'wrap',
+                      alignSelf: 'center',
+                      marginTop: dimensions.height * 0.025
+                    }}>
+                      {workoutIcons.map((workoutIcon, index) => (
+                        <TouchableOpacity
+                          key={workoutIcon.id}
+                          onPress={() => {
+                            if (selectedWorkoutCategory === workoutIcon.callEmWorkoutTitle) {
+                              setSelectedWorkoutCategory(null);
+                            } else setSelectedWorkoutCategory(workoutIcon.callEmWorkoutTitle);
+                          }}
+                          style={{
+                            width: dimensions.width * 0.285,
+                            backgroundColor: '#fff',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            borderRadius: dimensions.width * 0.05,
+                            marginTop: dimensions.height * 0.012,
+                            height: dimensions.width * 0.285,
+                            opacity: selectedWorkoutCategory === workoutIcon.callEmWorkoutTitle || !selectedWorkoutCategory ? 1 : 0.5,
+                          }}>
+                          <Image
+                            source={workoutIcon.callEmWorkoutIcon}
+                            style={{
+                              width: dimensions.width * 0.1,
+                              height: dimensions.width * 0.1,
+                            }}
+                            resizeMode='contain'
+                          />
+
+                        </TouchableOpacity>
+                      ))}
+                    </View>
+
+                    {selectedWorkoutCategory && (
+                      <TouchableOpacity
+                        onPress={async () => {
+                          setIsSelectCategoryWasVisible(true);
+                        }}
+                        style={{
+                          width: dimensions.width * 0.45,
+                          height: dimensions.height * 0.08,
+                          marginTop: dimensions.height * 0.07,
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          alignSelf: 'center',
+                        }}
+                      >
+                        <LinearGradient
+                          style={[styles.linearGradieint, {
+                            borderRadius: dimensions.width * 0.03,
+                            borderColor: '#fff',
+                            borderWidth: dimensions.width * 0.0015,
+                          }]}
+                          colors={['#EB510A', '#D80715']}
+                          start={{ x: 1, y: 0 }}
+                          end={{ x: 0, y: 1 }}
+                        />
+                        <Text
+                          style={{
+                            textAlign: 'center',
+                            fontWeight: 700,
+                            fontFamily: fontOrbitronRegular,
+                            fontSize: dimensions.width * 0.05,
+                            color: '#fff',
+                            paddingHorizontal: dimensions.width * 0.05,
+                          }}>
+                          Continue
+                        </Text>
+                      </TouchableOpacity>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <Text style={styles.orbitronMediumSizeText}>
+                      Name workout
+                    </Text>
+
+                    <TextInput
+                      placeholder="Name workout"
+                      maxLength={20}
+                      value={nameWorkout}
+                      onChangeText={setNameWorkout}
+                      placeholderTextColor="#818181"
+                      style={[styles.callEnTextInputStyles, {
+                        alignSelf: 'center',
+                        fontFamily: fontInterRegular,
+                        fontWeight: nameWorkout.length > 0 ? 600 : 400,
+                      }]}
+                    />
+
+                    <Text style={styles.orbitronMediumSizeText}>
+                      Repeating the exercise:
+                    </Text>
+
+                    <TextInput
+                      placeholder="Repetitions"
+                      maxLength={3}
+                      value={repeatingWorkout}
+                      keyboardType='numeric'
+                      onChangeText={setRepeatingWorkout}
+                      placeholderTextColor="#818181"
+                      style={[styles.callEnTextInputStyles, {
+                        alignSelf: 'center',
+                        fontFamily: fontInterRegular,
+                        fontWeight: repeatingWorkout.length > 0 ? 600 : 400,
+                      }]}
+                    />
+
+                    <Text style={styles.orbitronMediumSizeText}>
+                      How long does it take?
+                    </Text>
+
+                    <TextInput
+                      placeholder="Execution time (minutes)"
+                      maxLength={3}
+                      keyboardType='numeric'
+                      value={executionTime}
+                      onChangeText={setExecutionTime}
+                      placeholderTextColor="#818181"
+                      style={[styles.callEnTextInputStyles, {
+                        alignSelf: 'center',
+                        fontFamily: fontInterRegular,
+                        fontWeight: executionTime.length > 0 ? 600 : 400,
+                      }]}
+                    />
+
+                    <View style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      marginTop: dimensions.height * 0.04,
+                      width: dimensions.width * 0.9,
+                      alignSelf: 'center',
+                    }}>
+                      <Text style={{
+                        textAlign: "left",
+                        fontFamily: fontOrbitronExtraBold,
+                        fontSize: dimensions.width * 0.045,
+                        color: 'white',
+                      }}>
+                        Reset time:
+                      </Text>
+
+                      {['1 min', '2 min', '3 min'].map((time, index) => (
+                        <TouchableOpacity
+                          key={time}
+                          onPress={() => {
+                            if (selectedRestTime === time) {
+                              setSelectedRestTime('');
+                            } else setSelectedRestTime(time);
+                          }}
+                          style={{
+                            width: dimensions.width * 0.17,
+                            height: dimensions.width * 0.17,
+                            backgroundColor: '#fff',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            borderRadius: dimensions.width * 0.03,
+                            opacity: selectedRestTime === time || selectedRestTime === '' ? 1 : 0.5,
+                          }}>
+                          <Text style={{
+                            textAlign: "center",
+                            fontFamily: fontInterRegular,
+                            fontWeight: 600,
+                            fontSize: dimensions.width * 0.04,
+                            color: selectedRestTime === time ? 'black' : '#818181',
+                            textTransform: 'uppercase',
+                          }}>
+                            {time}
+                          </Text>
+                        </TouchableOpacity>
+                      ))}
+                    </View>
+
+                    {nameWorkout.length > 0 && repeatingWorkout.length > 0 && executionTime.length > 0 && selectedRestTime.length > 0 && (
+                      <TouchableOpacity
+                        onPress={() => {
+                          saveNewWorkout();
+                        }}
+                        style={{
+                          alignSelf: 'center',
+                          backgroundColor: 'white',
+                          borderRadius: dimensions.width * 0.03,
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          marginTop: dimensions.height * 0.025,
+                          width: dimensions.width * 0.4,
+                          height: dimensions.height * 0.07,
+                        }}>
+                        <Text
+                          style={{
+                            textAlign: "center",
+                            fontFamily: fontOrbitronExtraBold,
+                            fontSize: dimensions.width * 0.05,
+                            paddingVertical: dimensions.height * 0.015,
+                            color: '#EB510A',
+                            paddingHorizontal: dimensions.width * 0.06,
+                          }}
+                        >
+                          Create
+                        </Text>
+                      </TouchableOpacity>
+                    )}
+
+                  </>
+                )}
+              </>
+            )}
+          </SafeAreaView>
+        </>
+
       ) : selectedMontRealScreen === 'MontRealFavorites' ? (
         <MontFavouritesRealScreen setSelectedMontRealScreen={setSelectedMontRealScreen} setSelectedMontRealPlace={setSelectedMontRealPlace} savedMontPlacesReal={savedMontPlacesReal} setSavedMontPlacesReal={setSavedMontPlacesReal} setMontMapRealPlaceVisible={setMontMapRealPlaceVisible} />
       ) : selectedMontRealScreen === 'YouMontAboutApp' ? (
         <YouMontAboutApp setSelectedMontRealScreen={setSelectedMontRealScreen} selectedMontRealPlace={selectedMontRealPlace} isMontMapRealPlaceVisible={isMontMapRealPlaceVisible} setMontMapRealPlaceVisible={setMontMapRealPlaceVisible} setSavedMontPlacesReal={setSavedMontPlacesReal} savedMontPlacesReal={savedMontPlacesReal} selectedMontRealScreen={selectedMontRealScreen} />
-      ) : selectedMontRealScreen === 'FamousPlaces' ? (
-        <MontFamousPlacesScreen setSelectedMontRealScreen={setSelectedMontRealScreen} setSavedMontPlacesReal={setSavedMontPlacesReal} savedMontPlacesReal={savedMontPlacesReal} />
+      ) : selectedMontRealScreen === 'Trainings' ? (
+        <CallEnTrainingsScreen setSelectedMontRealScreen={setSelectedMontRealScreen} setOwnedWorkouts={setOwnedWorkouts} ownedWorkouts={ownedWorkouts} workoutIcons={workoutIcons}  />
       ) : null}
 
       <View
