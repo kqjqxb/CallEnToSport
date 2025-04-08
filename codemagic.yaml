@@ -10,9 +10,9 @@ workflows:
         XCODE_WORKSPACE: "CallEnToSport.xcworkspace" # <----
         XCODE_SCHEME: "CallEnToSport" # <----
         BUNDLE_ID: "com.call.en.to.sport.app" # <----
-        APP_STORE_APP_ID: 6743625816 # <----
-        APP_STORE_CONNECT_KEY_ID: "Y25AC5NMK7" # <----
-        APP_STORE_CONNECT_ISSUER_ID: "25dcb2f4-2745-446f-b61b-07aae0562ab2" # <----
+        APP_STORE_APP_ID: 6744365270 # <----
+        APP_STORE_CONNECT_KEY_ID: "NXR3LUSFSK" # <----
+        APP_STORE_CONNECT_ISSUER_ID: "23544296-e7ae-4cb3-b511-98cd37d00bc6" # <----
         node: latest
         xcode: latest
         cocoapods: default
@@ -52,7 +52,7 @@ workflows:
     publishing:
       email:
         recipients:
-          - judy1994nel@mailfence.com       # <----
+          - wkamila761@gmail.com       # <----
         notify:
           success: true
           failure: false
