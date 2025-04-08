@@ -278,7 +278,7 @@ const CallEnTrainingsScreen = ({ setOwnedWorkouts, ownedWorkouts, workoutIcons, 
                     <Text
                       style={styles.orbitronText}
                     >
-                      Start trining
+                      Start training
                     </Text>
                   </TouchableOpacity>
 
@@ -381,7 +381,7 @@ const CallEnTrainingsScreen = ({ setOwnedWorkouts, ownedWorkouts, workoutIcons, 
                 <Text
                   style={styles.orbitronText}
                 >
-                  Start trining
+                  Start training
                 </Text>
               </TouchableOpacity>
 
