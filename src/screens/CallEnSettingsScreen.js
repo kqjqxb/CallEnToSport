@@ -130,7 +130,7 @@ const CallEnSettingsScreen = ({ savedMontPlacesReal, setSavedMontPlacesReal, }) 
                 fontFamily: fontOrbitronExtraBold,
                 fontSize: dimensions.width * 0.05,
                 color: 'white',
-                marginTop: dimensions.height * 0.015,
+                marginTop: dimensions.height * 0.017,
                 marginRight: dimensions.width * 0.01,
               }}
             >
@@ -290,7 +290,7 @@ const CallEnSettingsScreen = ({ savedMontPlacesReal, setSavedMontPlacesReal, }) 
             <View style={styles.profileWhiteViews}>
               {editingAge ? (
                 <TextInput
-                  maxLength={2}
+                  maxLength={age === 'Age' ? 3 : 2}
                   style={[styles.profileInfoText, { paddingHorizontal: dimensions.width * 0.03 }]}
                   value={age}
                   onChangeText={setAge}

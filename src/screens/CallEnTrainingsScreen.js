@@ -153,7 +153,7 @@ const CallEnTrainingsScreen = ({ setOwnedWorkouts, ownedWorkouts, workoutIcons, 
                 fontFamily: fontOrbitronExtraBold,
                 fontSize: dimensions.width * 0.05,
                 color: 'white',
-                marginLeft: -dimensions.width * 0.03,
+                marginLeft: -dimensions.width * 0.02,
                 flex: 1,
                 marginRight: isTrainingOpened ? dimensions.width * 0.06 : 0,
               }}
