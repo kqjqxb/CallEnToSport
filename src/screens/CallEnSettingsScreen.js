@@ -187,34 +187,33 @@ const CallEnSettingsScreen = ({ savedMontPlacesReal, setSavedMontPlacesReal, }) 
 
             <TouchableOpacity
               activeOpacity={0.7}
-              // disabled={!image}
-              // onPress={() => {
-              //   if (image) {
-              //     Alert.alert(
-              //       "Deleting image",
-              //       "Do you want to delete profile image?",
-              //       [
-              //         {
-              //           text: "Cancel",
-              //           style: "cancel"
-              //         },
-              //         {
-              //           text: "Delete",
-              //           onPress: async () => {
-              //             setImage(null);
-              //             try {
-              //               await AsyncStorage.removeItem('userImage');
-              //             } catch (error) {
-              //               console.error('Error deleting image from AsyncStorage: ', error);
-              //             }
-              //           },
-              //           style: "destructive"
-              //         }
-              //       ]
-              //     );
-              //   }
-              // }}
-              onPress={() =>{resetImage()}}
+              disabled={!image}
+              onPress={() => {
+                if (image) {
+                  Alert.alert(
+                    "Deleting image",
+                    "Do you want to delete profile image?",
+                    [
+                      {
+                        text: "Cancel",
+                        style: "cancel"
+                      },
+                      {
+                        text: "Delete",
+                        onPress: async () => {
+                          setImage(null);
+                          try {
+                            await AsyncStorage.removeItem('userImage');
+                          } catch (error) {
+                            console.error('Error deleting image from AsyncStorage: ', error);
+                          }
+                        },
+                        style: "destructive"
+                      }
+                    ]
+                  );
+                }
+              }}
               style={{
                 width: dimensions.height * 0.055,
                 height: dimensions.height * 0.055,

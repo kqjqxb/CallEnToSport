@@ -326,10 +326,8 @@ const CallEmSportsFactsScreen = ({ }) => {
                         }]}>
                             <TouchableOpacity
                                 onPress={() => {
-                                    // setIsSportFactVisible(false);
-                                    // setSelectedSportCategory(null);
-
-                                    callToTheNextSportFact();
+                                    setIsSportFactVisible(false);
+                                    setSelectedSportCategory(null);
                                 }}
                                 style={{
                                     marginRight: dimensions.width * 0.05,
