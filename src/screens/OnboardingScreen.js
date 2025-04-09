@@ -73,7 +73,7 @@ const OnboardingScreen = () => {
             paddingHorizontal: dimensions.width * 0.05,
             textAlign: 'left',
             color: 'white',
-            fontSize: dimensions.width * 0.065,
+            fontSize: dimensions.width * 0.06,
             maxWidth: dimensions.width * 0.89,
             alignSelf: 'flex-start',
             fontFamily: fontOrbitronExtraBold,
@@ -84,7 +84,7 @@ const OnboardingScreen = () => {
         <Text
           style={{
             color: '#fff',
-            marginTop: dimensions.height * 0.02,
+            marginTop: dimensions.height * 0.015,
             fontWeight: 400,
             textAlign: 'left',
             paddingHorizontal: dimensions.width * 0.05,

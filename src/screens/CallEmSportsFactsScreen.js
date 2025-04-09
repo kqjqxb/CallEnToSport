@@ -334,8 +334,8 @@ const CallEmSportsFactsScreen = ({ }) => {
                                     justifyContent: 'center',
                                     alignSelf: 'center',
                                     width: dimensions.width * 0.45,
-                                    alignItems: 'center',
                                     height: dimensions.height * 0.075,
+                                    alignItems: 'center',
                                     flexDirection: 'row',
                                 }}>
                                 <LinearGradient

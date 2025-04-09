@@ -37,8 +37,8 @@ const CallEnLoadToSporttAppScreen = () => {
         duration={3000}
         easing="linear"
         style={{
-          width: dimensions.height * 0.2,
           overflow: 'hidden',
+          width: dimensions.height * 0.2,
         }}
       >
         <Image
